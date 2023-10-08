@@ -17,6 +17,9 @@ class TestRegistration():
         driver.find_element(By.XPATH, '//div/form/fieldset[2]/div/div/input').send_keys(f'Ermakova_Polina_1{number}@ya.ru')
         driver.find_element(*Locators.PASSWORD).send_keys(f'{random.randint(000000, 999999)}')
         driver.find_element(*Locators.REG_BUTTON).click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(Locators.ENTRY))
+
+        assert driver.find_element(*Locators.ENTRY).text == 'Вход'
 
     def test_registration_password_5_symbols(self, driver):
         driver.find_element(*Locators.LK).click()
